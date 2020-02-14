@@ -7,15 +7,39 @@ vec2
 #Vectors with range of numbers can be created using the : between the range of elements
 vec3<-c(1:5)
 vec3
-#Its not absolutely required to use c() to create a vector
+#Its not absolutely required to use c() to create a vector with sequence of numbers
 vec4<-5:10
 vec4
+
+#Since elements in vectors need to be of same data type, if other type elements are used they are coerced into higher types.
+#The order of coercion is logical to integer to double to character.
+v1<-c(FALSE,2)
+v1 #FALSE IS coerced to 0. Also please note in logical scenarios 0 evaluates to FALSE and Non-Zero element evaluates to TRUE
+
+v2<-c(FALSE,2,3.14)
+v2
+
+v3<-c(FALSE,2,3.14,"Area")
+v3
+
 
 #Vectors can also be created using the seq()
 sequence_vector<-seq(1:10)
 sequence_vector
 sequence_vector1<-seq(10)
 sequence_vector1
+
+seq_vector<-seq(1,5,by=0.5) #0.5 is step size. by= is optional
+seq_vector
+seq_vector<-seq(1,5,0.5) #this is same as the above statement.
+#When using the named arguments the order of the arguments does not matter
+seq_vector<-seq(to=5,by=0.5,from=1)
+seq_vector
+
+seq_vector1<-seq(1,5,length.out=4) # will be rounded to an integer if fractional
+seq_vector1
+
+
 
 #There is a repetitive function which can also be used for creating a vector
 rep_vector<-rep(1,10)
