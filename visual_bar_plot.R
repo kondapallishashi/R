@@ -82,5 +82,14 @@ legend("topleft",
        fill = c("red","green")
 )
 
+titanic.data
+
+barplot(titanic.data,
+        main = "Survival of Each Class",
+        xlab = "Class",
+        ylab="count",
+        col = c("red","green")
+)
+
 
 

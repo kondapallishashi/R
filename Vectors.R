@@ -40,10 +40,22 @@ seq_vector1<-seq(1,5,length.out=4) # will be rounded to an integer if fractional
 seq_vector1
 
 
-
 #There is a repetitive function which can also be used for creating a vector
 rep_vector<-rep(1,10)
 rep_vector
+
+#rep() can be used to repeat a set of fixed numbers multiple times.
+rv1<-c(2,4,6)
+#Repeat the values in vector rv1 3 times.
+rpv1<-rep(rv1,3)
+rpv1
+#elements in the rv1 can also be repeated multiple times using rep()
+times<-c(3,2,2)
+rpv1<-rep(rv1,times)
+rpv1
+
+
+
 
 #Character Vector
 char_vec<-c("Apple","Orange","Grape","Banana","Pears")
@@ -129,8 +141,21 @@ x*complex_number #Displays:[1] 3+ 2i  6+ 4i  9+ 6i 12+ 8i 15+10i
 
 #Appending vectors to make a bigger vector
 x<-c(x,6,7,8)
+x
+
 #Two vectors can also be appended
 #x<-c(x,y)
+
+#append() can also be used to add more elements to an existing vector.
+x<-append(x,9)
+x
+
+#To add an element to the beginning of the vector, use prepend() function
+#THIS WAS READ IN DUMMIES BOOK..BUT NOT WORKING
+x<-prepend(x,0)
+x
+
+
 
 #Slicing a vector
 num_vec<-c(1:10)

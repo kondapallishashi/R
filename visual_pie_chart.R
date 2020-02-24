@@ -12,3 +12,9 @@ pie(expenditure,
     border="brown",
     clockwise=TRUE
 )
+
+#Pie chart from Cars93 Dataset
+library(MASS)
+Cars93
+
+pie(table(Cars93$Type))

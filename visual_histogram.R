@@ -31,6 +31,22 @@ hist(Temperature,
      freq=FALSE
 )
 
+#Density plot can also be created using the parameter probability=TRUE
+
+hist(Temperature,
+     main="Maximum daily temperature at La Guardia Airport",
+     xlab="Temperature in degrees Fahrenheit",
+     xlim=c(50,100),
+     col="darkmagenta",
+     #freq=FALSE
+     probability = TRUE
+)
+
+#Additional lines can be added to the plot to provide benchmark guides
+lines(density(Temperature))
+
+
+
 #hist() function returns 6 values that can be used for further processing
 h<-hist(Temperature)
 h
@@ -53,3 +69,10 @@ hist(Temperature,
      border="brown",
      breaks=c(55,60,70,75,80,100)
 )
+
+airquality
+
+#Usage of filter.
+#To get the data for day 1 of every month.
+airquality.day1<-filter(airquality,airquality$Day==1)
+airquality.day1
