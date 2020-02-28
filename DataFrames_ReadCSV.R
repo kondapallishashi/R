@@ -2,7 +2,17 @@
 
 percapita<-read.csv("Percapita.csv",header=TRUE)
 class(percapita)
+#use head to show the first 6 rows of the data frame
 head(percapita)
+
+#use tail() to show the last 6 rows of the data frame
+tail(percapita)
+percapita
+
+#To select only a few of the columns mention the column names as below
+pre2kdata<-subset(percapita,select=c(X1980,X1990,X1995))
+pre2kdata
+
 
 summary(percapita[2:9])
 #use the function colMeans() to calculate the mean of the numeric values in vectors and data frames

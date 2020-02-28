@@ -7,9 +7,21 @@ vec2
 #Vectors with range of numbers can be created using the : between the range of elements
 vec3<-c(1:5)
 vec3
-#Its not absolutely required to use c() to create a vector
+#Its not absolutely required to use c() to create a vector with sequence of numbers
 vec4<-5:10
 vec4
+
+#Since elements in vectors need to be of same data type, if other type elements are used they are coerced into higher types.
+#The order of coercion is logical to integer to double to character.
+v1<-c(FALSE,2)
+v1 #FALSE IS coerced to 0. Also please note in logical scenarios 0 evaluates to FALSE and Non-Zero element evaluates to TRUE
+
+v2<-c(FALSE,2,3.14)
+v2
+
+v3<-c(FALSE,2,3.14,"Area")
+v3
+
 
 #Vectors can also be created using the seq()
 sequence_vector<-seq(1:10)
@@ -17,9 +29,33 @@ sequence_vector
 sequence_vector1<-seq(10)
 sequence_vector1
 
+seq_vector<-seq(1,5,by=0.5) #0.5 is step size. by= is optional
+seq_vector
+seq_vector<-seq(1,5,0.5) #this is same as the above statement.
+#When using the named arguments the order of the arguments does not matter
+seq_vector<-seq(to=5,by=0.5,from=1)
+seq_vector
+
+seq_vector1<-seq(1,5,length.out=4) # will be rounded to an integer if fractional
+seq_vector1
+
+
 #There is a repetitive function which can also be used for creating a vector
 rep_vector<-rep(1,10)
 rep_vector
+
+#rep() can be used to repeat a set of fixed numbers multiple times.
+rv1<-c(2,4,6)
+#Repeat the values in vector rv1 3 times.
+rpv1<-rep(rv1,3)
+rpv1
+#elements in the rv1 can also be repeated multiple times using rep()
+times<-c(3,2,2)
+rpv1<-rep(rv1,times)
+rpv1
+
+
+
 
 #Character Vector
 char_vec<-c("Apple","Orange","Grape","Banana","Pears")
@@ -105,8 +141,21 @@ x*complex_number #Displays:[1] 3+ 2i  6+ 4i  9+ 6i 12+ 8i 15+10i
 
 #Appending vectors to make a bigger vector
 x<-c(x,6,7,8)
+x
+
 #Two vectors can also be appended
 #x<-c(x,y)
+
+#append() can also be used to add more elements to an existing vector.
+x<-append(x,9)
+x
+
+#To add an element to the beginning of the vector, use prepend() function
+#THIS WAS READ IN DUMMIES BOOK..BUT NOT WORKING
+x<-prepend(x,0)
+x
+
+
 
 #Slicing a vector
 num_vec<-c(1:10)
