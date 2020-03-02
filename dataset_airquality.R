@@ -1,7 +1,12 @@
 #Demonstrates some common operations using airquality dataset
 
 library(datasets)
+library(tidyr)
 airquality
+
+#Remove the values with NA
+airquality.no.NA <- drop_na(airquality)
+airquality.no.NA
 
 #To determine the relationship between two variables in a dataset we can use the below formula
 #function(dependent_var ~ independent_var, data = data.frame)

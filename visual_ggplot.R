@@ -145,4 +145,23 @@ library(scatterplot3d)
 with(airquality.no.NA.with.ozone, (scatterplot3d(Wind~Temp+Ozone,pch=19)))
 
 
+#The scatterplot matrix shows relation ship between more than 2 variables in a data set.
+#To generate a scatterplot matrix, use ggpairs() function provided as part of ggally package built on ggplot2.
+library(ggplot2)
+library(GGally)
 
+#Make a subset of airquality.no.NA dataset.
+airquality.subset<-subset(airquality.no.NA, select=c(Ozone, Wind, Temp, Solar.R ))
+ggpairs(airquality.subset)
+
+
+
+#BOX PLOTS
+
+#To plot Temperature against month in ggplot()
+#The as.factor(Month) is used to treat Month as a categorical factor instead of numerical value.
+ggplot(airquality, aes(x=as.factor(Month),y=Temp)) +
+  geom_boxplot() +
+  geom_point()+ #This is added to display all data points
+  labs(y="Temperature",x="Month")+ #This is used to change the x,y-axis labels
+  scale_x_discrete(labels=c("May","June","July","August", "September")) #this is used to display month names instead of numbers 5,5,7..
