@@ -39,6 +39,7 @@ ui <- fluidPage(
 server <- function(input, output) {
     
     #Prepare hist data in reactive context
+    #Reactive contexts are always provided within {} and when invoking the reactive components use ().
     #Creating this variable provides the ability to use the results of sampling the uniform distribution for other calculations such as mean, median, standard deviation etc
     
     histdata <- reactive({

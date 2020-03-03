@@ -1,8 +1,22 @@
+#
+# This is a Shiny web application. You can run the application by clicking
+# the 'Run App' button above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    http://shiny.rstudio.com/
+#
+
+# This application outputs the ggplot for multiple selections of data columns in airquality dataset.
+# The dataset airquality is part of datasets package, therefore importing the package datasets.
+
 library(datasets)
 # To use the drop_na() function to remove NA values from the data set, import tidyr package.
 library(tidyr)
 #
 library(tibble)
+#Library required for ggplot2.
+library(ggplot2)
 #
 library(shiny)
 
@@ -44,6 +58,7 @@ ui <- fluidPage(
     
     
 ) #End of UI Segment
+
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
@@ -97,23 +112,36 @@ server <- function(input, output) {
         #which function is used to retrive the label which corresponds to the user selection input$Y
         Y_Label <- df.lv$label[which(df.lv$value == input$Y)]
         
-        #Rendering the plot.
-        plot(
-            x=x_column, # Data for X Axis - data selected in dropdown list 1
-            y=y_column, # Data for Y Axis - data selected in dropdownlist 2
-            xlab = X_Label, # X Axis label
-            ylab = Y_Label, # Y Axis label
-            cex.axis = 1.5, # Dimensions for the plot lines
-            cex.lab = 1.5,
-            pch = 20,       # Plot Character 
-            cex =2,
-            #Title of the plot
-            main = paste(X_Label, " vs ", Y_Label, "\n r = ", round(correlation,3), "Y = ", round(intercept,3), "X"),
-            cex.main = 1.8
-        ) #End of plot
         
-        #Function to draw regression lines.
-        abline(intercept,slope)
+        #Rendering the ggplot.
+        #the first argument selections() is the data.
+        # In the aes() the first argument is data for x-axis and the second argument is for y-axis.
+        ggplot(selections(), aes(x = x_column, y = y_column)) +
+            # geom_point() to select points for the plot. size indicates the dimensions for the points.
+            geom_point(size = 3) + 
+            #adding labels using the labs() 
+            labs(
+                x = X_Label,
+                y = Y_Label,
+                title = paste(Y_Label, " vs ", X_Label, "\n r = ", round(correlation,3), " Y = ", round(intercept,3), " + ", round(slope,3))
+            ) +
+            
+            #Adding theme() to set the sizes and fonts
+            theme(axis.title.x = element_text(size=18),
+                  axis.text.x = element_text(size=17),
+                  axis.title.y = element_text(size=18),
+                  axis.text.y = element_text(size=17),
+                  plot.title = element_text(hjust = 0.5,size=20))+
+            #geom_smooth() renders the regression line.
+            # The first argument specifies that the method is linear regression
+            # The second argument specified the color of the line.
+            # The shadow around the regression line represents the standard error
+            # of estimate — a measure of variability around the line. The tighter the shadow, the
+            # better the fit of the line to the data. (Note what happens when the x-variable and
+            # the y-variable are the same.). To eliminate the shadow, add se=FALSE as an argument to geom_smooth().
+            
+            geom_smooth(method="lm",col="blue")
+
     })
     
 }
